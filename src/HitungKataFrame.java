@@ -12,9 +12,26 @@ public class HitungKataFrame extends javax.swing.JFrame {
     /**
      * Creates new form HitungKataFrame
      */
-    public HitungKataFrame() {
-        initComponents();
-    }
+public HitungKataFrame() {
+    initComponents();
+    
+    // Atur font default
+    java.awt.Font defaultFont = new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 14);
+    txtInput.setFont(defaultFont);
+
+    // Warna latar belakang
+    jPanel2.setBackground(new java.awt.Color(240, 240, 240));
+
+    // Buat teks hasil lebih tebal
+    lblKata.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
+    lblKarakter.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
+    lblKalimat.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
+    lblParagraf.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
+
+    // Label judul lebih besar
+    lblJudul.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 18));
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,6 +56,7 @@ public class HitungKataFrame extends javax.swing.JFrame {
         btnSimpan = new javax.swing.JButton();
         txtCari = new javax.swing.JTextField();
         btnCari = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,7 +68,7 @@ public class HitungKataFrame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(97, 97, 97)
                 .addComponent(lblJudul)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -76,19 +94,19 @@ public class HitungKataFrame extends javax.swing.JFrame {
         });
 
         lblKarakter.setFont(new java.awt.Font("Milky Nice", 0, 14)); // NOI18N
-        lblKarakter.setText("Jumlah Karakter:");
+        lblKarakter.setText("Jumlah Karakter: -");
 
         lblKata.setFont(new java.awt.Font("Milky Nice", 0, 14)); // NOI18N
-        lblKata.setText("Jumlah Kata: ");
+        lblKata.setText("Jumlah Kata: -");
 
         lblhasil.setFont(new java.awt.Font("Milky Nice", 0, 14)); // NOI18N
         lblhasil.setText("Hasil Penghitungan: ");
 
         lblKalimat.setFont(new java.awt.Font("Milky Nice", 0, 14)); // NOI18N
-        lblKalimat.setText("Jumlah Kalimat:");
+        lblKalimat.setText("Jumlah Kalimat: -");
 
         lblParagraf.setFont(new java.awt.Font("Milky Nice", 0, 14)); // NOI18N
-        lblParagraf.setText("Jumlah Paragraf:");
+        lblParagraf.setText("Jumlah Paragraf: -");
 
         btnSimpan.setFont(new java.awt.Font("Milky Nice", 0, 14)); // NOI18N
         btnSimpan.setText("Simpan");
@@ -108,6 +126,14 @@ public class HitungKataFrame extends javax.swing.JFrame {
             }
         });
 
+        btnReset.setFont(new java.awt.Font("Milky Nice", 0, 14)); // NOI18N
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -116,18 +142,19 @@ public class HitungKataFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(btnHitung)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnSimpan))
-                                .addComponent(txtCari))
-                            .addComponent(btnCari))
-                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnHitung)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSimpan)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnReset))
+                            .addComponent(btnCari)
+                            .addComponent(txtCari))
+                        .addGap(18, 37, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(lblParagraf)
@@ -140,12 +167,13 @@ public class HitungKataFrame extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnHitung)
                     .addComponent(lblhasil)
-                    .addComponent(btnSimpan))
+                    .addComponent(btnSimpan)
+                    .addComponent(btnReset))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,7 +187,7 @@ public class HitungKataFrame extends javax.swing.JFrame {
                         .addComponent(lblKalimat)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblParagraf)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -177,7 +205,8 @@ public class HitungKataFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -259,6 +288,14 @@ try {
     }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+    txtInput.setText("");
+    lblKata.setText("Jumlah Kata: -");
+    lblKarakter.setText("Jumlah Karakter: -");
+    lblKalimat.setText("Jumlah Kalimat: -");
+    lblParagraf.setText("Jumlah Paragraf: -");
+    }//GEN-LAST:event_btnResetActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -297,6 +334,7 @@ try {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCari;
     private javax.swing.JButton btnHitung;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
