@@ -16,20 +16,6 @@ public class HitungKataFrame extends javax.swing.JFrame {
         initComponents();
     }
 
-    private void hitungTeks() {
-    String teks = txtInput.getText().trim();
-
-    int jumlahKata = teks.isEmpty() ? 0 : teks.split("\\s+").length;
-    int jumlahKarakter = teks.replaceAll("\\s+", "").length();
-    int jumlahKalimat = teks.isEmpty() ? 0 : teks.split("[.!?]+").length;
-    int jumlahParagraf = teks.isEmpty() ? 0 : teks.split("\\n+").length;
-
-    lblKata.setText("Jumlah Kata: " + jumlahKata);
-    lblKarakter.setText("Jumlah Karakter: " + jumlahKarakter);
-    lblKalimat.setText("Jumlah Kalimat: " + jumlahKalimat);
-    lblParagraf.setText("Jumlah Paragraf: " + jumlahParagraf);
-}
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -111,6 +97,11 @@ public class HitungKataFrame extends javax.swing.JFrame {
 
         btnCari.setFont(new java.awt.Font("Milky Nice", 0, 14)); // NOI18N
         btnCari.setText("Cari");
+        btnCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -209,6 +200,30 @@ lblKalimat.setText("Jumlah Kalimat: " + jumlahKalimat);
 lblParagraf.setText("Jumlah Paragraf: " + jumlahParagraf);
 
     }//GEN-LAST:event_btnHitungActionPerformed
+
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
+    String teks = txtInput.getText().toLowerCase();
+    String kataDicari = txtCari.getText().toLowerCase().trim();
+
+    if (kataDicari.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Masukkan kata yang ingin dicari!");
+        return;
+    }
+
+    // Hitung kemunculan kata
+    String[] kataArray = teks.split("\\s+");
+    int jumlahKemunculan = 0;
+    for (String kata : kataArray) {
+        if (kata.replaceAll("[^a-zA-Z]", "").equals(kataDicari)) {
+            jumlahKemunculan++;
+        }
+    }
+
+    javax.swing.JOptionPane.showMessageDialog(
+        this,
+        "Kata \"" + kataDicari + "\" ditemukan sebanyak " + jumlahKemunculan + " kali."
+    );
+    }//GEN-LAST:event_btnCariActionPerformed
 
     /**
      * @param args the command line arguments
