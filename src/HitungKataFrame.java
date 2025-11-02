@@ -1,8 +1,12 @@
+
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author HP
@@ -14,24 +18,32 @@ public class HitungKataFrame extends javax.swing.JFrame {
      */
 public HitungKataFrame() {
     initComponents();
-    
+        setLocationRelativeTo(null); // biar jendela di tengah layar
+
+    // === Tambahkan gambar background dengan aman ===
+    try {
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Background.jpg"));
+        Image img = icon.getImage().getScaledInstance(jPanel2.getWidth(), jPanel2.getHeight(), Image.SCALE_SMOOTH);
+        JLabel bg = new JLabel(new ImageIcon(img));
+        bg.setBounds(0, 0, jPanel2.getWidth(), jPanel2.getHeight());
+        jPanel2.add(bg);
+        jPanel2.setComponentZOrder(bg, jPanel2.getComponentCount() - 1);
+    } catch (Exception e) {
+        System.out.println("Gagal memuat background: " + e.getMessage());
+ 
+    }
     // Atur font default
-    java.awt.Font defaultFont = new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 14);
+    java.awt.Font defaultFont = new java.awt.Font("Milky Nice", java.awt.Font.PLAIN, 14);
     txtInput.setFont(defaultFont);
-
-    // Warna latar belakang
-    jPanel2.setBackground(new java.awt.Color(240, 240, 240));
-
     // Buat teks hasil lebih tebal
-    lblKata.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
-    lblKarakter.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
-    lblKalimat.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
-    lblParagraf.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
+    lblKata.setFont(new java.awt.Font("Milky Nice", java.awt.Font.BOLD, 14));
+    lblKarakter.setFont(new java.awt.Font("Milky Nice", java.awt.Font.BOLD, 14));
+    lblKalimat.setFont(new java.awt.Font("Milky Nice", java.awt.Font.BOLD, 14));
+    lblParagraf.setFont(new java.awt.Font("Milky Nice", java.awt.Font.BOLD, 14));
 
     // Label judul lebih besar
-    lblJudul.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 18));
+    lblJudul.setFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 18));
 }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,10 +79,10 @@ public HitungKataFrame() {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(97, 97, 97)
                 .addComponent(lblJudul)
-                .addGap(95, 95, 95))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
