@@ -92,6 +92,11 @@ public class HitungKataFrame extends javax.swing.JFrame {
 
         btnSimpan.setFont(new java.awt.Font("Milky Nice", 0, 14)); // NOI18N
         btnSimpan.setText("Simpan");
+        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanActionPerformed(evt);
+            }
+        });
 
         txtCari.setFont(new java.awt.Font("Milky Nice", 0, 14)); // NOI18N
 
@@ -224,6 +229,35 @@ lblParagraf.setText("Jumlah Paragraf: " + jumlahParagraf);
         "Kata \"" + kataDicari + "\" ditemukan sebanyak " + jumlahKemunculan + " kali."
     );
     }//GEN-LAST:event_btnCariActionPerformed
+
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+try {
+        // Ambil isi teks dari area input
+        String teks = txtInput.getText();
+
+        // Validasi: jika kosong, beri peringatan
+        if (teks.trim().isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Teks masih kosong, tidak bisa disimpan!");
+            return;
+        }
+
+        // Ambil hasil penghitungan
+        String hasil = "=== HASIL PENGHITUNGAN TEKS ===\n"
+                     + lblKata.getText() + "\n"
+                     + lblKarakter.getText() + "\n"
+                     + lblKalimat.getText() + "\n"
+                     + lblParagraf.getText() + "\n";
+
+        // Tentukan nama file tujuan
+        java.io.FileWriter writer = new java.io.FileWriter("hasil_penghitungan.txt");
+        writer.write("Teks:\n" + teks + "\n\n" + hasil);
+        writer.close();
+
+        javax.swing.JOptionPane.showMessageDialog(this, "Berhasil disimpan ke file hasil_penghitungan.txt!");
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage());
+    }
+    }//GEN-LAST:event_btnSimpanActionPerformed
 
     /**
      * @param args the command line arguments
